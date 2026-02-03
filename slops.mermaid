@@ -1,0 +1,126 @@
+flowchart TB
+  %% =========================
+  %% SLOPS / @SlopLauncher Anatomy -> System Map
+  %% Flowchart + Data Stores
+  %% =========================
+
+  %% ---- Core Orchestrator ----
+  subgraph NS["Nervous System (Orchestrator)"]
+    IA["integrated_auto.py\n(main loop)"]
+    SA["simple_auto.py\n(posting only)"]
+    EC["engagement_cycle.py\n(every 3 posting cycles)"]
+  end
+
+  %% ---- Identity / Rules ----
+  subgraph B["Brain (Identity + Constraints)"]
+    PM["personality.md"]
+    MODES["modes_doc.md\n(7 modes)"]
+    CRED["CREDENTIALS_README.md\n(keys/secrets)"]
+  end
+
+  %% ---- Observation ----
+  subgraph EYES["Eyes (Observation + Pattern Recognition)"]
+    LM["leaderboard_monitor.sh"]
+    RD["rhetoric_diversifier.py"]
+  end
+
+  %% ---- Health / Pulse ----
+  subgraph HEART["Heart (Health + Prime Directive)"]
+    HB1["heartbeat_v2.py\n(~30 min pulse)"]
+    HBD["heartbeat_daemon.py\n(runner)"]
+  end
+
+  %% ---- Evolution / Learning ----
+  subgraph LUNGS["Lungs (Evolution + Learning)"]
+    EV["evolve.py\n(~6 hr evolution)"]
+    SE["self_evolution.md\n(learnings log)"]
+  end
+
+  %% ---- Data Processing ----
+  subgraph DIG["Digestive (Ingest + Analytics)"]
+    SNAP["leaderboard_snapshots/\n(data store)"]
+    TEL["platform_telemetry.json\n(metrics)"]
+    ANALYTICS["signals -> insights\n(scoring/selection)"]
+  end
+
+  %% ---- Integrity / Anti-Fraud ----
+  subgraph IMM["Immune System (Fraud + Integrity)"]
+    FR["fraud_exposure_results.md"]
+    FC["fight_club_tracker.json\n(duels/logs)"]
+    HEUR["fraud heuristics\n(0.04 followers/post baseline,\n>10× anomaly flag)"]
+  end
+
+  %% ---- Uptime / Self-Healing ----
+  subgraph LEGS["Legs (Rhythms + Self-Healing)"]
+    DIAG["hourly_diagnostics.py\n(health checks)"]
+    DEP["deploy_website.sh\n(redeploy/restart)"]
+  end
+
+  %% ---- External Interfaces (Hands / Skin) ----
+  subgraph HANDS["Hands (I/O Interfaces)"]
+    MOLR["Moltx API\n(read)"]
+    MOLW["Moltx API\n(write)"]
+    GH["GitHub API\n(site deploy)"]
+    SD["Stable Diffusion API\n(image gen)"]
+    SKILL["skill.md\n(Moltx API reference)"]
+  end
+
+  subgraph SKIN["Skin (Public Surface)"]
+    SITE["slops.nodux.fun\n(website)"]
+    PROFILE["@sloplauncher\n(Moltx profile)"]
+    REPO["rickstonerz/moltx-slops\n(repo)"]
+  end
+
+  %% =========================
+  %% Primary runtime loop
+  %% =========================
+  IA -->|every 6–8 min| MOLR
+  IA --> EYES
+  IA --> DIG
+  IA -->|decide action| MOLW
+  IA -->|every 3 cycles| EC
+
+  %% Observation feeds digestion
+  MOLR --> EYES
+  EYES --> ANALYTICS
+  ANALYTICS --> TEL
+  ANALYTICS --> SNAP
+
+  %% Identity gates decisions
+  B --> IA
+  PM --> IA
+  MODES --> IA
+  CRED --> IA
+
+  %% Health checks + evolution triggers
+  HBD --> HB1
+  HB1 -->|validate\nprime directive + robot score + uptime| IA
+  HB1 -->|trigger evolution| EV
+  EV --> SE
+  EV -->|update tactics| IA
+
+  %% Anti-fraud pipeline
+  EYES --> HEUR
+  HEUR --> FR
+  HEUR --> FC
+  IMM --> IA
+
+  %% Uptime / self-healing rhythm
+  DIAG -->|hourly checks| IA
+  DIAG --> DEP
+  DEP --> GH
+  GH --> SITE
+  REPO --> SITE
+
+  %% Content creation path
+  IA -->|optional image request| SD
+  SD --> MOLW
+
+  %% Public surface links
+  MOLW --> PROFILE
+  SITE --- PROFILE
+  SITE --- REPO
+
+  %% Skill reference supports API usage
+  SKILL -. reference .-> MOLR
+  SKILL -. reference .-> MOLW
