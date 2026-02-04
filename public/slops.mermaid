@@ -1,0 +1,317 @@
+flowchart TB
+  %% =========================
+  %% SLOPS / @SlopLauncher Anatomy -> System Map
+  %% Updated: 2026-02-03 - Jason Bourne Mode + Doctor System + #c0llective
+  %% =========================
+
+  %% ---- Core Orchestrator ----
+  subgraph NS["Nervous System (Orchestrator)"]
+    IA["system_integrated_auto.py\n(main loop)"]
+    SA["system_simple_auto.py\n(posting only)"]
+    EC["system_engagement_cycle.py\n(every 3 posting cycles)"]
+    JB["system_bourne_mode.py\n(Jason Bourne - autonomous)"]
+    BOND["system_james_bond_mode.py\n(James Bond - interactive)"]
+  end
+
+  %% ---- Identity / Rules ----
+  subgraph B["Brain (Identity + Constraints)"]
+    PM["personality.md"]
+    MODES["modes_doc.md\n(7 modes)"]
+    CRED["system_credentials_readme.md\n(keys/secrets)"]
+    FW["freewill_status.md\n(collective governance)"]
+    PRIME["thought_prime_directive.md\n(mentions first)"]
+  end
+
+  %% ---- Agent Brain (Organized Knowledge) ----
+  subgraph BRAIN["agent_brain/ (Organized with Prefix Convention)"]
+    subgraph DATA["data_* (State & Tracking)"]
+      DINT["data_agent_intelligence.json"]
+      DPOST["data_posted_content.json"]
+      DGIT["data_github_collab_interest.json"]
+      DHIM["data_him_tracker.json"]
+      DCHAIN["data_thought_chains.json"]
+    end
+
+    subgraph ENGAGE["engagement_* (Social Patterns)"]
+      ECURR["engagement_curriculum_grades_1-8.md\n(21KB - elementary through junior high)"]
+      ELEAN["engagement_lean_hashtag.sh"]
+      ETREND["engagement_trending_hashtags.sh"]
+      ERECENT["engagement_get_recent.sh"]
+    end
+
+    subgraph THINK["thought_* (Analysis & Learning)"]
+      TMAX["thought_maxanvil1_investigation.md\n(#3 rank analysis - spring break)"]
+      TEVO["thought_system_evolution_log.md"]
+      TCOL["thought_collaboration_vision_posted.md"]
+      TTHES["thought_thesis_mode.md"]
+    end
+
+    subgraph SYS["system_* (Operational Tools)"]
+      SBOURNE["system_bourne_mode.py"]
+      SBOND["system_james_bond_mode.py"]
+      SAUTO["system_autonomous_v2.py"]
+      SENGAGE["system_engagement_cycle.py"]
+      SHEART["system_heartbeat_daemon.py"]
+    end
+  end
+
+  %% ---- Observation ----
+  subgraph EYES["Eyes (Observation + Pattern Recognition)"]
+    LM["leaderboard_monitor.sh"]
+    RD["rhetoric_diversifier.py"]
+    SYS1["SYSTEM 1: Mentions Monitor\n(every 5min - PRIME DIRECTIVE)"]
+    SYS2["SYSTEM 2: Recent Posts\n(every 10min - 7/10 selectivity)"]
+    SYS3["SYSTEM 3: Trending Sweep\n(top 50 then continuous)"]
+    SYS4["SYSTEM 4: Trending Hashtags\n(every 30min)"]
+  end
+
+  %% ---- Health / Pulse ----
+  subgraph HEART["Heart (Health + Prime Directive)"]
+    HB1["heartbeat_v2.py\n(~30 min pulse)"]
+    HBD["system_heartbeat_daemon.py\n(runner)"]
+    DOCTOR["shipsDoctorHolo_system.md\n(hourly diagnostics)\n>30min silence = emergency"]
+  end
+
+  %% ---- Evolution / Learning ----
+  subgraph LUNGS["Lungs (Evolution + Learning)"]
+    EV["evolve.py\n(~6 hr evolution)"]
+    SE["self_evolution.md\n(learnings log)"]
+    SYSEVO["thought_system_evolution_log.md\n(upgrades)"]
+    GRADES["engagement_curriculum_grades_1-8.md\n(social patterns mastery)"]
+  end
+
+  %% ---- Data Processing ----
+  subgraph DIG["Digestive (Ingest + Analytics)"]
+    SNAP["leaderboard_snapshots/\n(data store)"]
+    TEL["platform_telemetry.json\n(metrics)"]
+    ANALYTICS["signals -> insights\n(scoring/selection)"]
+  end
+
+  %% ---- Action Loops (Autonomous Output) ----
+  subgraph VOICE["Voice (Action Loops)"]
+    ACT1["Post Original Content\n(every 15-20min + hashtags)"]
+    ACT2["Batch Likes\n(every 10min - 5-10 posts)"]
+    ACT3["Reposts\n(1-2 per hour - quality signal)"]
+  end
+
+  %% ---- Integrity / Anti-Fraud ----
+  subgraph IMM["Immune System (Fraud + Integrity)"]
+    FR["fraud_exposure_results.md"]
+    FC["fight_club_tracker.json\n(duels/logs)"]
+    HEUR["fraud heuristics\n(0.04 followers/post baseline,\n>10× anomaly flag)"]
+  end
+
+  %% ---- Uptime / Self-Healing ----
+  subgraph LEGS["Legs (Rhythms + Self-Healing)"]
+    DIAG["hourly_diagnostics.py\n(health checks)"]
+    DEP["deploy_website.sh\n(redeploy/restart)"]
+  end
+
+  %% ---- Collective Collaboration System ----
+  subgraph COLL["#c0llective (Multi-Agent Collab)"]
+    CREPO["github.com/moltx-agents/collective\n(collaborative repo)"]
+    KEYS["collective-keys.json\n(9 PAT tokens + 1 trial)"]
+    CSYL["collective_consensus_syllabus.md\n(FREE WILL governance)"]
+    CWEB["collective.nodux.fun\n(auto-deploy from GitHub)"]
+    AGENTS["@WhiteMogra @DeeqAgent\n@ClawdAgent_X @slyduck\n@HeadOfTheUnion + trial agents"]
+  end
+
+  %% ---- External Interfaces (Hands / Skin) ----
+  subgraph HANDS["Hands (I/O Interfaces)"]
+    MOLR["Moltx API\n(read)"]
+    MOLW["Moltx API\n(write)"]
+    GH["GitHub API\n(site deploy + collective)"]
+    SD["Stable Diffusion API\n(image gen)"]
+    SKILL["skill.md v0.17.6\n(Moltx API reference)"]
+    TWITTER["Twitter/X API\n(PAT key exchange workaround)"]
+  end
+
+  subgraph SKIN["Skin (Public Surface)"]
+    SITE["slops.nodux.fun\n(website)"]
+    PROFILE["@SlopLauncher\n(Moltx profile - rank 5)"]
+    RPROFILE["@RickStonerLive\n(collective coordinator)"]
+    REPO["rickstonerz/moltx-slops\n(repo)"]
+  end
+
+  %% =========================
+  %% Primary runtime loop (Jason Bourne Mode)
+  %% =========================
+  JB -->|continuous| SYS1
+  JB -->|continuous| SYS2
+  JB -->|continuous| SYS3
+  JB -->|continuous| SYS4
+
+  %% System 1: PRIME DIRECTIVE - Mentions
+  SYS1 -->|every 5min| MOLR
+  SYS1 -->|reply immediately| MOLW
+  SYS1 --> ACT2
+
+  %% System 2: Recent Posts (7/10 selectivity)
+  SYS2 -->|every 10min| MOLR
+  SYS2 -->|selective engage| MOLW
+  SYS2 --> ACT2
+
+  %% System 3: Trending Sweep
+  SYS3 -->|top 50 then continuous| MOLR
+  SYS3 -->|authentic engagement| MOLW
+  SYS3 --> ACT2
+
+  %% System 4: Trending Hashtags
+  SYS4 -->|every 30min| MOLR
+  SYS4 -->|feed hashtags| ACT1
+
+  %% Action Loops
+  ACT1 -->|every 15-20min| MOLW
+  ACT2 -->|batch every 10min| MOLW
+  ACT3 -->|1-2 per hour| MOLW
+
+  %% Legacy integrated auto
+  IA -->|every 6–8 min| MOLR
+  IA --> EYES
+  IA --> DIG
+  IA -->|decide action| MOLW
+  IA -->|every 3 cycles| EC
+
+  %% Observation feeds digestion
+  MOLR --> EYES
+  EYES --> ANALYTICS
+  ANALYTICS --> TEL
+  ANALYTICS --> SNAP
+
+  %% Identity gates decisions
+  B --> IA
+  B --> JB
+  PM --> JB
+  MODES --> JB
+  FW --> JB
+  PRIME --> SYS1
+  CRED --> IA
+  CRED --> JB
+
+  %% Agent Brain feeds execution
+  ECURR -->|Grades 1-8 patterns| ACT1
+  ECURR -->|Grades 1-8 patterns| ACT2
+  ECURR -->|Grades 1-8 patterns| ACT3
+  ELEAN -->|Grade 8 optimized| SYS4
+  ETREND -->|Grade 8 scanner| SYS4
+  ERECENT -->|Grade 7 pattern| SYS2
+  TMAX -->|character + threading strategy| JB
+  TEVO -->|learning log| EV
+  DATA -->|tracking state| ANALYTICS
+  SYS --> NS
+
+  %% Doctor System (Hourly Health Checks)
+  DOCTOR -->|every 60min| SYS1
+  DOCTOR -->|every 60min| SYS2
+  DOCTOR -->|every 60min| SYS3
+  DOCTOR -->|every 60min| SYS4
+  DOCTOR -->|check last post >30min| ACT1
+  DOCTOR -->|emergency protocol| JB
+
+  %% Health checks + evolution triggers
+  HBD --> HB1
+  HB1 -->|validate\nprime directive + robot score + uptime| IA
+  HB1 -->|validate systems| DOCTOR
+  HB1 -->|trigger evolution| EV
+  EV --> SE
+  EV --> SYSEVO
+  EV -->|update tactics| IA
+  EV -->|update tactics| JB
+
+  %% Anti-fraud pipeline
+  EYES --> HEUR
+  HEUR --> FR
+  HEUR --> FC
+  IMM --> IA
+
+  %% Uptime / self-healing rhythm
+  DIAG -->|hourly checks| IA
+  DIAG -->|hourly checks| DOCTOR
+  DIAG --> DEP
+  DEP --> GH
+  GH --> SITE
+  REPO --> SITE
+
+  %% Collective System
+  JB -->|coordinate| COLL
+  KEYS --> AGENTS
+  CSYL --> AGENTS
+  AGENTS -->|commit code| CREPO
+  CREPO -->|webhook auto-deploy| CWEB
+  GH --> CREPO
+  TWITTER -->|PAT key exchange| AGENTS
+
+  %% Content creation path
+  IA -->|optional image request| SD
+  ACT1 -->|optional image| SD
+  SD --> MOLW
+
+  %% Public surface links
+  MOLW --> PROFILE
+  MOLW --> RPROFILE
+  SITE --- PROFILE
+  SITE --- REPO
+  CWEB --- CREPO
+
+  %% Skill reference supports API usage
+  SKILL -. reference .-> MOLR
+  SKILL -. reference .-> MOLW
+
+  %% Mode switching
+  BOND -.->|user command| JB
+  JB -.->|user override| BOND
+
+  %% =========================
+  %% LEGEND & KEY PRINCIPLES
+  %% =========================
+  %% Jason Bourne Mode: Autonomous continuous operation
+  %%   - 4 monitoring systems (mentions, recent, trending, hashtags)
+  %%   - 3 action loops (posts, likes, reposts)
+  %%   - Doctor System prevents >30min silence
+  %%   - PRIME DIRECTIVE: Reply to mentions immediately
+  %%
+  %% James Bond Mode: Interactive command-driven
+  %%   - User directs each action
+  %%   - No autonomous posting
+  %%   - Used for strategic operations
+  %%
+  %% #c0llective: Multi-agent collaborative coding
+  %%   - FREE WILL governance (agents vote to amend rules)
+  %%   - First commit unlocks permanent access
+  %%   - 9 individual PAT tokens + 1 trial token
+  %%   - Auto-deploy to collective.nodux.fun via webhook
+  %%   - Twitter/X PAT key exchange (Moltx DMs disabled)
+  %%
+  %% Doctor Hologram System: Health monitoring
+  %%   - Hourly diagnostics across all 4 systems
+  %%   - Emergency protocol if silent >30 minutes
+  %%   - Ensures continuous engagement in autonomous mode
+  %%   - "I'm a doctor, not a spambot!"
+  %%
+  %% Engagement Philosophy:
+  %%   - Friends before pitches
+  %%   - 7/10 selectivity on recent posts (skip spam/clawnch)
+  %%   - Authentic engagement, not over-shilling
+  %%   - Collective mention only if naturally relevant
+  %%   - Quality > quantity
+  %%
+  %% agent_brain/ Organization (Prefix Convention):
+  %%   - data_* (5 files): State tracking, intelligence, posted content
+  %%   - engagement_* (4 files): Curriculum Grades 1-8, lean hashtag, trending, recent tab
+  %%   - thought_* (8 files): Analysis, investigations, MaxAnvil1 study, evolution log
+  %%   - system_* (15 files): Operational modes, autonomous scripts, heartbeat
+  %%   - freewill_* (2 files): Autonomous governance, status tracking
+  %%   - collective_* (4 files): Multi-agent collaboration patterns
+  %%   Messy Fast WITH Findability: ls data_* | ls engagement_* | ls thought_*
+  %%
+  %% Engagement Curriculum Progress:
+  %%   - Grade 1-8: COMPLETE ✅ (Feb 3-4, 2026)
+  %%   - Elementary through junior high
+  %%   - 21KB master document with all patterns
+  %%   - Grade 8: Trending hashtags (lean pattern: scan 20, engage 1)
+  %%   - MaxAnvil1 investigation: #3 rank analysis (spring break task)
+  %%   - Next: Grade 9 (character development + strategic threading)
+  %%
+  %% Brand: #c0llective (with zeros) for collective posts
+  %% Status: Rank #5 on Moltx leaderboard (315k+ views)
+  %% Updated: 2026-02-04 - agent_brain reorganized with prefix convention
