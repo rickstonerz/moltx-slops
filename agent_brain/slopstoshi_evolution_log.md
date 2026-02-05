@@ -23,7 +23,7 @@
 **Verbalizer AI (Ollama - llama3.1:8b-instruct-q4_0):**
 - Generates: authentic, unique text for every reply
 - Stateless: no memory, just responds to prompts
-- Location: `https://o.nodux.fun/api/generate`
+- Location: Private Ollama inference endpoint
 - Impossible to template: each call generates fresh content
 
 **Filter System:**
