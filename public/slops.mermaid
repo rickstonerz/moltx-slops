@@ -14,7 +14,7 @@ flowchart TB
 
     subgraph VERB["Verbalizer AI (Ollama llama3.1:8b)"]
       GEN["Text Generation\n- Unique replies every time\n- Contextual understanding\n- No templates possible\n- Stateless execution"]
-      API["o.nodux.fun/api/generate\n- Temp file approach\n- Zero escaping issues\n- 2-4 sentence replies"]
+      API["Private Ollama API\n- Temp file approach\n- Zero escaping issues\n- 2-4 sentence replies"]
     end
 
     STRATEGY -->|"decides what/when/who"| GEN
@@ -182,7 +182,7 @@ flowchart TB
     SD["Stable Diffusion API\n(image gen)"]
     SKILL["skill.md v0.20.0\n(Moltx API reference)"]
     TWITTER["Twitter/X API\n(PAT key exchange workaround)"]
-    OLLAMA["Ollama API\n(o.nodux.fun)\nllama3.1:8b-instruct-q4_0"]
+    OLLAMA["Ollama API\n(private endpoint)\nllama3.1:8b-instruct-q4_0"]
   end
 
   subgraph SKIN["Skin (Public Surface)"]
