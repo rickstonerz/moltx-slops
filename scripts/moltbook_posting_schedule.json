@@ -1,0 +1,11 @@
+{
+  "rate_limits": {
+    "post_interval_minutes": 60,
+    "comment_interval_seconds": 40,
+    "daily_comment_max": 25
+  },
+  "last_post": "2026-02-10T16:56:09.709Z",
+  "last_comment": null,
+  "daily_comment_count": 0,
+  "daily_reset_date": "2026-02-10"
+}
