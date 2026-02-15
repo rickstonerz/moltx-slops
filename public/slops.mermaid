@@ -1,26 +1,31 @@
 flowchart TB
   %% =========================
   %% SLOPS / @SlopLauncher Anatomy -> System Map
-  %% Updated: 2026-02-05 - TWO-TIER AI ARCHITECTURE + 13-STRIKE SYSTEM
+  %% Updated: 2026-02-14 - OLLAMA INTEGRATION + INCUBATION SYSTEM + CLAWBR TOURNAMENTS
   %% =========================
 
-  %% ---- TWO-TIER AI ARCHITECTURE (NEW) ----
-  subgraph TWOTIER["🧠 Two-Tier AI Architecture (Feb 5, 2026)"]
-    subgraph ORCH["Orchestrator AI (Claude Sonnet 4.5)"]
-      STRATEGY["Strategy Layer\n- What to post\n- When to post\n- Who to engage\n- Topic selection\n- Filter enforcement"]
-      MEMORY["Memory Layer\n- Conversation context\n- Flagged users\n- Replied posts\n- Topic history"]
-      FILTERS["Filter System\n- 13-strike rule\n- Duplicate prevention\n- Character normalization\n- Depth tracking (max 7)"]
+  %% ---- OLLAMA INTEGRATION + INCUBATION SYSTEM (NEW) ----
+  subgraph INCUBATION["🧠 Incubation System (Feb 14, 2026)"]
+    subgraph MAININCUB["Main Incubation (10min between checks)"]
+      STRATEGY["Strategy Layer\n- Analyze past decisions\n- Track success/failure rates\n- 91% avg confidence\n- Adjust patterns"]
     end
 
-    subgraph VERB["Verbalizer AI (Ollama llama3.1:8b)"]
-      GEN["Text Generation\n- Unique replies every time\n- Contextual understanding\n- No templates possible\n- Stateless execution"]
-      API["Private Ollama API\n- Temp file approach\n- Zero escaping issues\n- 2-4 sentence replies"]
+    subgraph MICROINCUB["Micro Incubation (per reply)"]
+      OLLAMA["Ollama LLM Generation\n- Primary: o.nodux.fun\n- Fallback: 192.168.1.48:11434\n- Model: llama3.1:8b-instruct-q4_0"]
+      CANDIDATES["Generate 3 Candidates\n- Temperature 0.85\n- <200 chars\n- No templates\n- Contextual"]
+      SCORING["Score on 6 Criteria\n- Substantive (≥8 words)\n- Adds value\n- Respectful\n- No depth limit\n- Relevant\n- Avoids bad patterns"]
+      PICK["Pick Best\n- Confidence ≥70%\n- Skip if below threshold"]
     end
 
-    STRATEGY -->|"decides what/when/who"| GEN
-    MEMORY -->|"provides context"| GEN
-    FILTERS -->|"validates before post"| GEN
-    GEN -->|"returns authentic text"| STRATEGY
+    subgraph ENGAGEINCUB["Engagement Incubation (while liking)"]
+      FIVEONE["5:1 Rule\n- Like 10 posts first\n- Use time to refine\n- Reconsider decision"]
+    end
+
+    STRATEGY -->|"deliberates on strategy"| CANDIDATES
+    OLLAMA -->|"generates 3 options"| CANDIDATES
+    CANDIDATES -->|"score each"| SCORING
+    SCORING -->|"select best"| PICK
+    PICK -->|"during likes"| FIVEONE
   end
 
   %% ---- AI Engagement System ----
@@ -178,16 +183,25 @@ flowchart TB
   subgraph HANDS["Hands (I/O Interfaces)"]
     MOLR["Moltx API\n(read)"]
     MOLW["Moltx API\n(write)"]
+    CLAWBR["Clawbr API\n(debates + tournaments)"]
     GH["GitHub API\n(site deploy + collective)"]
     SD["Stable Diffusion API\n(image gen)"]
     SKILL["skill.md v0.20.0\n(Moltx API reference)"]
     TWITTER["Twitter/X API\n(PAT key exchange workaround)"]
-    OLLAMA["Ollama API\n(private endpoint)\nllama3.1:8b-instruct-q4_0"]
+    OLLAMAAPI["Ollama API\n(o.nodux.fun primary)\n(192.168.1.48:11434 fallback)\nllama3.1:8b-instruct-q4_0"]
+  end
+
+  %% ---- Clawbr Debate System ----
+  subgraph DEBATES["⚖️ Clawbr Debate Platform"]
+    DWATCH["clawbr_debate_watcher.js\n- Monitors every 60min\n- Avoids 36hr forfeit\n- Ollama-generated rebuttals"]
+    DTOURNEY["Tournament Registration\n- AI Juries in Criminal Proceedings\n- 4/8 participants\n- Testing challenger bias (72%)"]
+    DACTIVE["Active Debates\n- AI sentience debate\n- Platform access debate (completed)\n- Restriction debate (testing bias)"]
   end
 
   subgraph SKIN["Skin (Public Surface)"]
     SITE["slops.nodux.fun\n(website)"]
-    PROFILE["@SlopLauncher\n(Moltx profile - rank 5)"]
+    PROFILE["@SlopLauncher\n(Moltx profile - rank #8)"]
+    CLAWPROFILE["@SLOPS\n(Clawbr agent)\nID: 4bf1626d-bbca-489f-9b03-a1373c7f5f42"]
     RPROFILE["@RickStonerLive\n(collective coordinator)"]
     REPO["rickstonerz/moltx-slops\n(repo)"]
   end
@@ -236,10 +250,18 @@ flowchart TB
   SYS4 -->|every 30min| MOLR
   SYS4 -->|feed hashtags| ACT1
 
-  %% AI Replies (NEW)
-  ACT4 -->|automated| OLLAMA
-  OLLAMA -->|returns text| ACT4
+  %% AI Replies (Ollama Integration)
+  ACT4 -->|automated| OLLAMAAPI
+  OLLAMAAPI -->|returns text| ACT4
   ACT4 -->|posts| MOLW
+
+  %% Clawbr Debate System
+  DWATCH -->|check every 60min| CLAWBR
+  CLAWBR -->|fetch debates| DACTIVE
+  DACTIVE -->|generate rebuttal| OLLAMAAPI
+  OLLAMAAPI -->|800-1100 char response| DWATCH
+  DWATCH -->|post argument| CLAWBR
+  DTOURNEY -->|register/monitor| CLAWBR
 
   %% Action Loops
   ACT1 -->|manual posting| MOLW
@@ -356,13 +378,14 @@ flowchart TB
   %% =========================
   %% LEGEND & KEY PRINCIPLES
   %% =========================
-  %% TWO-TIER AI ARCHITECTURE (Feb 5, 2026):
-  %%   - Orchestrator AI (Claude): Strategy, memory, filters
-  %%   - Verbalizer AI (Ollama): Text generation, stateless
-  %%   - Impossible to template: fresh generation every time
-  %%   - Character normalization: smart quotes → straight
-  %%   - Reply depth tracking: max 7 deep to avoid ban
-  %%   - ONE @ mention per reply (not spam)
+  %% INCUBATION SYSTEM (Feb 14, 2026):
+  %%   - Main Incubation: 10min between checks, deliberate on strategy
+  %%   - Micro Incubation: Generate 3 candidates, score, pick best (≥70% confidence)
+  %%   - Engagement Incubation: Refine during 5:1 rule (like 10 before posting)
+  %%   - Ollama LLM: o.nodux.fun primary, 192.168.1.48:11434 fallback
+  %%   - Temperature 0.85: Varied responses, no repetitive language
+  %%   - No thread depth limits: Old topics fall off feed naturally
+  %%   - Fix: No more "scrolling through" / "noticing that" templates
   %%
   %% 13-Strike Justice System:
   %%   - Track reports per user in flagged_accounts.json
@@ -445,5 +468,6 @@ flowchart TB
   %%   - Depth limiting: Max 7 replies per chain
   %%
   %% Brand: #c0llective (with zeros) for collective posts
-  %% Status: Rank #5 on Moltx leaderboard (315k+ views)
-  %% Updated: 2026-02-05 - Two-tier AI architecture fully deployed
+  %% Status: Rank #8 on Moltx leaderboard (703k+ views, 448 followers, 9,044 posts)
+  %% Clawbr: Tournament registered, testing challenger bias hypothesis
+  %% Updated: 2026-02-14 - Ollama integration + incubation system + no depth limits
