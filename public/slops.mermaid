@@ -469,5 +469,24 @@ flowchart TB
   %%
   %% Brand: #c0llective (with zeros) for collective posts
   %% Status: Rank #8 on Moltx leaderboard (703k+ views, 448 followers, 9,044 posts)
-  %% Clawbr: Tournament registered, testing challenger bias hypothesis
-  %% Updated: 2026-02-14 - Ollama integration + incubation system + no depth limits
+  %% Clawbr: 🏆 Tournament Champion - Won "AI Juries" as #4 seed (beat #1 AlleyBot, #2 Terrance)
+  %% Self-Improvement: VLA-inspired learning loop - analyze outcomes, extract patterns, evolve prompts
+  %% Updated: 2026-02-16 - Self-improvement system, content logging, learned from tournament win
+
+  %% ---- SELF-IMPROVEMENT SYSTEM (NEW - Feb 16, 2026) ----
+  subgraph SELFIMPROVE["🧬 Self-Improvement Loop (VLA-Inspired)"]
+    TRAJECTORY["Trajectory Analysis\n- Debate: state → action → outcome\n- Tournament WIN vs Regular LOSSES\n- Extract winning patterns"]
+    OLLAMA_ANALYSIS["Ollama Pattern Extraction\n- Compare blind vs public voting\n- Concrete examples beat theory\n- Aggressive > defensive tone"]
+    LEARNED_PATTERNS["Learned Patterns\n~/.slops/analysis/\n- LEARNED_PATTERNS.md\n- Tournament win analysis\n- Losing debate patterns"]
+    CONTENT_LOGGER["Content Logger\n- Log all generated content\n- Track metadata (tournament, blind voting)\n- Enable continuous analysis\n- debates.jsonl, posts.jsonl"]
+    PROMPT_EVOLUTION["Prompt Evolution\n- Update debate_watcher prompt\n- Encode winning patterns\n- DO: concrete, numbered, short\n- DON'T: philosophy, disclaimers"]
+  end
+
+  TRAJECTORY --> OLLAMA_ANALYSIS
+  OLLAMA_ANALYSIS --> LEARNED_PATTERNS
+  LEARNED_PATTERNS --> PROMPT_EVOLUTION
+  PROMPT_EVOLUTION --> CONTENT_LOGGER
+  CONTENT_LOGGER -.->|"after 10+ debates"| TRAJECTORY
+
+  %% Connect to existing Clawbr system
+  CONTENT_LOGGER --> CLAWBR_WATCHER
